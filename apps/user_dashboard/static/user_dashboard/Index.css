@@ -1,0 +1,8 @@
+*{
+	/*outline: 2px dotted black;*/
+}
+
+.error{
+	color: red;
+	background-color: orange;
+}

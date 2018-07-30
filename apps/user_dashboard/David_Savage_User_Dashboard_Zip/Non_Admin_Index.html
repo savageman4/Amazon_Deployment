@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<style type="text/css">
+		.page_container{
+			display: block;
+/*			outline: 2px solid black;*/
+			height: 800px;
+			width: 1200px;
+		}
+		.header_1{
+			display: inline-block;
+/*			outline: 2px solid red;*/
+			background-color: purple;
+			color: white;
+			width: 350px;
+		}
+		.add_button{
+			display: inline-block;
+/*			outline: 2px solid red;*/
+			vertical-align: top;
+			margin: 10px 0px 10px 70px;
+			background-color: purple;
+			color: white;
+			border-radius: 5px;
+
+		}		
+		.form1{
+/*			outline: 2px solid green;*/
+		}	
+		.name_line{
+			width: 200px;
+/*			outline: 1px solid red;*/
+			display: inline-block;
+		}
+		.table-striped{
+			width: 500px;
+			background-color: #ede3f2;
+			margin-left: 30px;
+		}
+
+		.wider{
+			width: 5px;
+			margin-right: 50px;
+		}
+
+		.signedin{
+			margin-left: 30px;
+		}
+
+	</style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" Content="ie=edge">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="Customer_Reports.css">
+	<title>User Dashboard - Normal Users</title>
+	<script>
+	</script>
+</head>
+<body>
+	<div class="page_container">
+		<div class=display_users>
+			<h2 class="signedin">Signed in as {{ e_user.firstName }} {{ e_user.lastName }}</h2>
+        	<table class="table-striped" style="width:80%">
+        		<tr> 
+     				<th>ID</th>
+    				<th>Name</th> 
+    				<th>Email</th>
+    				<th>Created At</th>
+     				<th>User Level</th> 
+    				<th>Actions</th>
+    				<th></th>  				
+     			<tr/>
+				{% for user in users %}
+    			<tr> 
+    				<td> {{ user.id }} </td> 
+					<td><a class="name_line" href="/dashboard/{{user.id}}/edit_user"> {{ user.firstName }} {{ user.lastName  }} </a></td>
+					<td> {{ user.emailAddress  }} </td>
+					<td> {{ user.created_at }} </td>
+					<td> {% if user.user_level == 9 %}
+					         {{ "Admin" }}  
+					     {% else %}
+					         {{ "Normal" }}
+					     {% endif%}</td>
+					<td><a href="/dashboard/{{e_user.id}}/{{user.id}}/wall_content">Wall</a></td>
+				{% endfor %}
+				</tr>
+        	</table>
+        	<form class="return", action="/dashboard">
+ 				<input class="add_button" type="submit" value="Return to Login"/>
+ 			</form>   	
+		</div>
+		<div class="message_container">
+			{% if messages %}
+				<ul class="messages">
+   				{% for message in messages %}
+   					<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+   						<DIV style="outline: 2px solid red">    					
+       						{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %} Important: {% endif %}
+       						{{ message }}
+   						</DIV>       						
+   					</li>
+   				{% endfor %}
+				</ul>
+			{% endif %}
+		</div>
+	</div>
+</body>
+</html>
+

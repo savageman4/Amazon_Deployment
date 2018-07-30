@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<style type="text/css">
+		.header_paragraph{
+			height: 60px;
+			width: 450px;
+			font-size: 20px;
+			margin: 0px 0px 0px 70px;
+			background-color: green;
+		}
+		.underline{
+			text-decoration: underline;
+			margin-left: 190px;
+		}
+
+		.red{
+			color: red;
+			width: 65px;
+			padding-left: 15px;
+		}
+
+	</style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" Content="ie=edge">
+<!-- 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="Success.css">
+	<title>Customers</title>
+</head>
+<body>
+	<div class="page_container">
+		<p class="header_paragraph">The email address you entered (___) is a valid email address! Thank You!</p>
+		<p></p>
+		<p class="underline">Email Addresses Entered</p>
+        	<table class="table" border=1">
+				{% for email in emails %} 
+    			<tr>  
+					<td> Email Address: {{ email['emailAddress']  }} </td>
+					<td> Date Last Updated: {{ email['updatedat']  }} </td>
+					<td>
+               			<form name="f2" action="javascript:select();" >
+                			<input id="edit" type="submit" name="edit" value="Delete" />
+               			</form>
+					</td>
+				</tr>
+				{% endfor %}
+        	</table>
+	</div>
+</body>
+</html>
+

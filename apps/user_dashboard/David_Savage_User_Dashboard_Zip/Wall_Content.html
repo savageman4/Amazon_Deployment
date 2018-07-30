@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<style type="text/css">
+
+		.page_container{
+			display: block;
+		}
+
+		.heading.container{
+			disply:block;
+		}
+
+		.messages_form{
+			height: 3000px;
+			width: 1500px;
+			background-color: #f7b7be;
+			outline: 2px solid black;
+			padding-left: 40px;
+			padding-top: 40px;
+		}
+		.new_message{
+			display: block;
+		}
+
+		.new_comment{
+			display: block;
+		}
+
+		.form_input{
+			display: inline-block;
+			height: 100px;
+			width:1000px;
+		}
+		.form_button_one{
+			display: inline-block;
+			border-radius: 4px;
+			background-color: #ed0e26;
+			margin-left: 1000px; 
+		}
+		.form_button{
+			display: inline-block;
+			border-radius: 4px;
+			background-color: #ed0e26;
+		}
+
+		.header_1{
+			padding-left: 40px;
+		}
+		.heading{
+			display: block;
+		}
+		.comment_output{
+			display: inline-block;
+		}
+		.submit{
+			display: inline-block;
+		}
+		.comment{
+			color: orange;
+		}
+
+		.message{
+			color: red;
+
+		}
+
+
+	</style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" Content="ie=edge">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="Customer_Reports.css">
+	<title>Wall Project</title>
+	<script>
+	</script>
+</head>
+<body>
+	<div class="page_container">
+		<div class="heading_container">
+			<h2 class="header_1"> {{l_user.firstName }}  {{l_user.lastName }} - Wall </h2>
+			<form class="form_button_one" action="/dashboard/success" method="POST"> 				
+				<input class="form_button return_button" type="submit" name="message_button" id="message_button" value = "Return to Users"> 
+				{% csrf_token %}
+			</form>
+			<form class="form_button" action="/dashboard" method="GET">
+				<input class="form_button return_button" type="submit" name="message_button" id="message_button" value = "Return to Login"> 
+				{% csrf_token %}
+			</form>
+		</div>	
+		<div class="messages_form">
+			<h1 class="heading">Message List</h1>
+			<h3 class="heading_2"><b>Post a message</b></h3>
+			<form class="new_message" action="/dashboard/store_message" method="POST">
+				{% csrf_token %}
+				<input class="form_input" type="text" name="new_message_content" id="new_message_content">
+				<input class="add_msg" type="hidden" name="add_msg_userid" id="add_msg_userid" value = {{ l_user.id }}>
+				<input class="form_button" type="submit" name="message_button" id="message_button" value = "Post a Message"> 
+			</form>
+			{% for message in messages %}
+				<form class="display_message" action="/dashboard/delete_comment" method="POST">
+					{% csrf_token %}
+                	<p><b class="message">MESSAGE:</b> {{ message.msg_entered_by.firstName }}  {{ message.msg_entered_by.lastName }} {{ message.updated_at }} -- {{ message.message }}</p>
+                	{% for comment in message.message_comments.all %}    
+                   	 	<p class="comment_output"><b class="comment">COMMENT: </b> {{ comment.cmnt_entered_by.firstName }}  {{ comment.cmnt_entered_by.lastName }} {{ comment.updated_at }} {{ comment.wall_comment }} </p>
+ 						<input class="dlt_cmnt" type="hidden" id="delete_userid" name="delete_userid" value={{ l_user.id }}>
+						<input class="dlt_cmnt" type="hidden" id="delete_messageid" name="delete_messageid" value={{ message.id }}> 
+						<input class=dlt_cmnt" type="hidden" id="delete_commentid" name="delete_commentid" value={{ comment.id }}> 
+						<input class="form_button" type="submit" name="Delete" id="Delete" value = "Delete">
+						<p></p>
+					{% endfor%}	
+        		</form>
+				<h3 class="heading_2"><b>Post a comment</b></h3>
+				<form class="new_comment", action="/dashboard/store_comment" method="POST">
+				{% csrf_token %}
+					<input class="form_input" type="text" name="new_comment_content">
+					<input class="dlt_cmnt" type="hidden" id="new_comment_userid" name=new_comment_userid value={{ l_user.id }}> 
+					<input class="dlt_cmnt" type="hidden" id="new_comment_messageid" name="new_comment_messageid" value={{ message.id }}> 
+					<input class="form_button" type="submit" name="message button" value = "Post a Comment">
+				</form>
+            {% endfor %}      		
+		</div>
+	</div>
+</body>
+</html>

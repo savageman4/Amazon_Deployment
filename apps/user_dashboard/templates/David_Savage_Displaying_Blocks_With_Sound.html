@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+	<title>Display Blocks</title>
+  {% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'user_dashboard/David_Savage_Displaying_Blocks.css' %}">
+</head>
+<style type="text/css">
+  /**{
+  outline: 2px dotted red
+  }
+  */
+  .Page_Container{
+    width: 1110px;
+    height: 860px;
+/*    background-color: ##c9cacc;*/
+    background-color: #efe1b6;
+    display: block;
+    vertical-align: top;
+/*    outline: 2px dotted blue;*/
+    border: 5px;
+    border-style: solid;
+    border-color: black;
+
+  }
+
+  .column_container_one{
+    width: 211px;
+    height: 830px;
+    background-color: #efe1b6;
+    display: inline-block;
+    vertical-align: top;
+  /*  outline: 2px dotted blue;*/
+    padding-top: 30px;
+    padding-left: 30px;
+
+  }
+
+  .column_container_two{
+    width: 211px;
+    height: 830px;
+    background-color: #efe1b6;
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 30px;
+  /*  outline: 2px dotted blue;*/
+
+
+  }
+
+  .column_container_three{
+    width: 211px;
+    height: 830px;
+    background-color: #efe1b6;
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 30px;
+  /*  outline: 2px dotted blue;*/
+
+  }
+
+  .column_container_four{
+    width: 211px;
+    height: 830px;
+    background-color: #efe1b6;
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 30px;
+  /*  outline: 2px dotted blue;*/
+
+  }
+
+  .column_container_five{
+    width: 211px;
+    height: 830px;
+    background-color: #efe1b6;
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 30px;
+  /*  outline: 2px dotted blue;*/
+
+  }
+
+  .cat_picture_blue{
+    border-style: solid;
+    border_width: 5px;
+    /*outline*/: 2px solid black; 
+    border: 30px 30px 30px 30px;
+    border-color: #42d9f4;
+  /*  padding: 10px 10px 10px 10px;
+    margin: 0px 5px 10px 10px;*/
+    background-color: #42d9f4;
+    display: block;
+    margin-bottom: 30px;
+    
+
+  }
+
+  .cat_picture_red{
+    border-style: solid;
+    border_width: 5px;
+    /*outline*/: 2px solid black; 
+    border: 30px 0px 30px 30px;
+  /*  border-color: #ed1777;*/
+    border-color: black;
+  /*  padding: 10px 0px 12px 10px;
+    margin: 0px 5px 10px 10px;*/
+    background-color: #ed1777;
+    display: block;
+    margin-bottom: 30px;
+  }
+
+</style>
+<body> 
+  <p> Signed in?  {{ request.session.signedin  }} </p>
+  <p> login ID =   {{ request.session.loginid  }}</p>
+	<div class="Page_Container" "David Savage Display Blocks">
+		<div class="column_container_one">
+            {% load static %}
+           	<img class="cat_picture_blue" src= "{% static 'user_dashboard/codercat.jpg' %}" height="170" width="170">
+           	<img class="cat_picture_blue" src= "{% static 'user_dashboard/coder2.jpg' %}" height="170" width="170">
+            <img class="cat_picture_blue" src="{% static 'user_dashboard/cherry.jpg' %}" height="170" width="170">
+            <img class="cat_picture_blue" src="{% static 'user_dashboard/aidorucat.png' %}" height="170" width="170">
+		</div>
+		<div class="column_container_two">
+           	<img class="cat_picture_red" src="{% static 'user_dashboard/heisencat.png' %}" height="170" width="170">
+           	<img class="cat_picture_red" src="{% static 'user_dashboard/riddlocat.png' %}" height="170" width="170">	
+            <img class="cat_picture_red" src="{% static 'user_dashboard/oktobercat.png' %}" height="170" width="170">
+            <img class="cat_picture_red" src="{% static 'user_dashboard/domo-cat.png' %}" height="170" width="170">
+		</div>              
+		<div class="column_container_three">
+           	<img class="cat_picture_blue" src="{% static 'user_dashboard/linkcat.png' %}" height="170" width="170">
+            <img class="cat_picture_blue" src="{% static 'user_dashboard/chellocat.jpg' %}" height="170" width="170">	
+            <img class="cat_picture_blue" src="{% static 'user_dashboard/mario.png' %}" height="170" width="170">
+            <img class="cat_picture_blue" src="{% static 'user_dashboard/kantana.jpg' %}" height="170" width="170">
+		</div>     
+		<div class="column_container_four" height="170" width="170">
+           	<img class="cat_picture_red" src="{% static 'user_dashboard/ironcat.png' %}" height="170" width="170">
+            <img class="cat_picture_red" src="{% static 'user_dashboard/stormtroopocat.png' %}" height="170" width="170">	
+            <img class="cat_picture_red" src="{% static 'user_dashboard/ironcat.png' %}" height="170" width="170">
+            <img class="cat_picture_red" src="{% static 'user_dashboard/daftpunk.gif' %}" height="170" width="170">
+         </div>
+		<div class="column_container_five">
+           	<img class="cat_picture_blue" src="{% static 'user_dashboard/defunktocat.png' %}" height="170" width="170">
+            <img class="cat_picture_blue" src="{% static 'user_dashboard/visionary.jpg' %}" height="170" width="170">	
+            <img class="cat_picture_blue" src="{% static 'user_dashboard/jean-luc-picat.jpg' %}" height="170" width="170">
+            <img class="cat_picture_blue" src="{% static 'user_dashboard/codercat.jpg' %}" height="170" width="170">
+         </div>
+	</div>
+  <div> 
+    {% load static %}
+    <audio id="audiotag1" src="{% static 'user_dashboard/dogbarking.wav' %}" preload="auto"></audio>
+<!--     <a href="javascript:play_single_sound();">Play 5-sec sound on single channel</a> -->
+  </div>
+
+  <script type="text/javascript">
+
+    document.onclick = function(z){
+      console.log(z);
+      document.getElementById('audiotag1').play();
+    }
+    document.onkeydown = function(x){
+      console.log(x);
+    }
+
+
+  </script>
+
+</body>
+</html>

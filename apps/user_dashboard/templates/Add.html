@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<style type="text/css">
+		
+		.link_container{
+			display: block;
+		}
+
+		.link{
+			display: inline-block;
+		}
+
+
+	</style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" Content="ie=edge">
+<!-- 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"> -->
+<!-- 	<link rel="stylesheet" type="text/css" href="Index.css"> -->
+	<title>Add new user</title>
+	<script>
+	</script>
+</head>
+<body>
+	<div class="page_container">
+		<h1>Add User</h1>
+		<div class="edit_container">
+			<form class="form-group"  action="/dashboard/new/commit" method="POST">
+			{% csrf_token %}
+				<p> First Name</p>
+				<input class="form_input" type="text" name="rfname" >
+				<p> Last Name</p>
+				<input class="form-input" type="text" name="rlname" >
+				<p> Email </p>
+				<input class="form-input" type="text" name="remail" >
+				<p> Password</p>
+				<input class="form-input" type="password" name="rpassword" >
+				<p> Password Confirm</p>
+				<input class="form-input" type="password" name="rcpassword" >
+				<p>Comment</p>
+				<input class="form-input" type="text" name="rcomment" >
+				<p></p>
+				{% if updater.user_level == 9 %}
+				<select class="form-input" style="display:block" name="radmin">
+					<option class="form-input" value="Normal">Normal</option>
+					<option class="form-input" value="Admin">Admin</option>
+				</select>
+				<p></p>
+				{% endif %}			
+				<input type="submit" name="submit" value = "Submit"> 
+				<p></p>
+			</form>
+		</div>
+</body>
+</html>
+

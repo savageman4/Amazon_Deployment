@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<style type="text/css">
+		.header_paragraph{
+			height: 60px;
+			width: 450px;
+			font-size: 20px;
+			margin: 0px 0px 0px 70px;
+			background-color: green;
+		}
+		.underline{
+			text-decoration: underline;
+			margin-left: 190px;
+		}
+
+		.error{
+			color: red;
+
+		}
+		.page_container{
+			display: block;
+			width: 1500px;
+			height: 300px;
+		}
+		.registration_container{
+			display: inline-block;
+			width: 400px;
+			height:450px;
+			background-color:#75a6f4; 
+			border-radius: 5px;
+			padding-left: 30px; 
+		}
+		.login_container{
+			display: inline-block;
+			width: 400px;
+			height:450px;
+			vertical-align: top;
+			background-color: #e2c9ef;
+			margin-left: 50px;
+			border-radius: 5px; 
+			padding-left: 30px;
+		}
+
+		.login_reg{
+			background-color: #e9f29b;
+			margin-left: 200px;
+			width: 350px;
+			padding-left: 70px;
+			border-radius: 5px; 
+		}
+
+		.reg-header{
+			width: 300px;
+
+		}
+		.form-group{
+			display: block;
+		}
+		.form-control{
+			display: block;
+		}
+
+		.error{
+
+			display: inline-block;
+			color: red;
+
+		}
+		.message_container{
+/*			outline: 2px solid red;*/
+			height: 40px;
+			width: 350px;
+			margin-left: 420px;
+			margin-top: 30px;
+
+		}
+		.registration_container{
+/*			outline: 2px solid green;*/
+
+		}
+
+		.login_container{
+/*			outline: 2px solid green;*/
+
+		}
+
+	</style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" Content="ie=edge">
+<!-- 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"> -->
+<!-- 	<link rel="stylesheet" type="text/css" href="Index.css"> -->
+	<title>Login and Registration Input and Edit</title>
+	<script>
+	</script>
+</head>
+<body>
+	<div class="page_container">
+		<h1 class="login_reg">Login and Registration</h1>
+		<div class="registration_container">
+			<h2 class="reg-header">Register Here!</h2>
+			<form class="form-group"  action="/dashboard/process_reg" method="POST">
+				{% csrf_token %}
+				First Name: <input class="form-control" type="text" name="rfname">
+						<span class="error form-inline"></span>
+				<p></p>
+				Last Name: <input class="form-control form-inline" type="text" name="rlname" />
+						<span class="error form-inline"></span>
+				<p></p>
+				Email: <input class="form-control form-inline" type="text" name="remail" />
+						<span class="error form-inline"></span>
+				<p></p>
+				Password: <input class="form-control form-inline" type="password" name="rpassword" />
+						<span class="error form-inline"></span>
+				<p></p>
+				Confirm Password: <input class="form-control form-inline" type="password" name="rcpassword" />
+						<span class="error form-inline"></span>
+				<input class="form-control form-inline" type="submit" value="Register"/>
+				<p></p>		
+			</form>
+		</div>
+		<div class="login_container">
+			<h2>Login here!</h2>
+			<form class="form-group form-inline" action="/dashboard/process_login" method="POST">
+				{% csrf_token %}
+				Email Address: <input class="form-control form-inline" type="text" name="lemail" />
+						<span class="error form-inline"></span>
+				<p></p>
+				Password: <input class="form-control form-inline" type="password" name="lpassword" />
+						<span class="error form-inline"></span>
+				<p></p>
+					<input class="form-control form-inline" type="submit" value="Login" />
+			</form>
+		</div>
+		<div class="message_container">
+			{% if messages %}
+				<ul class="messages">
+   				{% for message in messages %}
+   					<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+   						<DIV style="outline: 2px solid red">    					
+       						{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %} Important: {% endif %}
+       						{{ message }}
+   						</DIV>       						
+   					</li>
+   				{% endfor %}
+				</ul>
+			{% endif %}
+		</div>		
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<style type="text/css">
+	.link_container{
+		display:block;
+	}
+	.link{
+		display: inline-block;
+	}
+	</style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" Content="ie=edge">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="Customer_Reports.css">
+	<title>Semi Restful Users</title>
+	<script>
+	</script>
+</head>
+<body>
+	<div class="page_container">
+		<h2 class="header_1">User {{ number }} </h2>
+		<div class=display_users>
+			<p>Full Name: {{ user.first_name }} {{user.last_name}} </p>
+			<p>Email: {{ user.email }} </p>
+			<p>Created at: {{ user.created_at }} </p>
+			<div class="link_container">
+				<a class="link" href="/users/{{user.id}}/edit">Edit</a>
+				<p class="link" > | </p>
+				<a class="link" href="/users/{{user.id}}/destroy">Delete</a>
+				<p class="link" > | </p>
+				<a class="link" href="/users">Return</a>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

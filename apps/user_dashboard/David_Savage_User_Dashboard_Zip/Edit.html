@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<style type="text/css">
+		
+		.link_container{
+			display: block;
+		}
+
+		.link{
+			display: inline-block;
+		}
+
+		.comments_header{
+
+			font-size: 20px;
+		}
+
+		.comment{
+
+			font-size: 15px;
+		}
+
+	</style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" Content="ie=edge">
+<!-- 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"> -->
+<!-- 	<link rel="stylesheet" type="text/css" href="Index.css"> -->
+	<title>Login and Registration Input and Edit</title>
+	<script>
+	</script>
+</head>
+<body>
+	<div class="page_container">
+		<h1>Edit User {{ user.firstName }} {{ user.lastName }} </h1>
+		<div class="edit_container">
+			<form class="form-group"  action="/dashboard/{{user.id}}/process_edit" method="POST">
+			{% csrf_token %}
+				<p> Email Address</p>
+				<input class="form_input" type="text" name="eemail" value = "{{ user.emailAddress }}" >
+				<p> First Name</p>
+				<input class="form-input" type="text" name="efname" value = "{{ user.firstName }}" >
+				<p>Last Name</p>
+				<input class="form-input" type="text" name="elname" value = "{{ user.lastName }}" >
+				<p>Password</p>
+				<input class="form-input" type="password" name="epassword">
+				<p>Confirm Password</p>
+				<input class="form-input" type="password" name="ecpassword">
+				<p>Comment</p>
+				<input class="form-input" type="text" name="ecomment" >
+				<p></p>
+				{% if updater.user_level == 9 %}
+				<select class="form-input" style="display:block" name="eadmin">
+					<option class="form-input" value="Normal">Normal</option>
+					<option class="form-input" value="Admin=">Admin</option>
+				</select>
+				<p></p>
+				{% endif %}
+				<input class="form-input" type="hidden" name="e_id" value="{{ user.id }}">
+				<input type="submit" name="submit" value = "Submit"> 
+				<p></p>
+
+			</form>
+		</div>
+		<div class="message_container">
+			{% if messages %}
+				<ul class="messages">
+   				{% for message in messages %}
+   					<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+   						<DIV style="outline: 2px solid red">    					
+       						{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %} Important: {% endif %}
+       						{{ message }}
+   						</DIV>       						
+   					</li>
+   				{% endfor %}
+				</ul>
+			{% endif %}
+		</div>
+		<div class="edit_comments_container">
+			{% if comments %}
+				<ul class="comments_header"><strong>Previous Comments: </strong>
+   				{% for comment in comments %}
+       				<p class="comment">	{{ comment.edit_comment }} </p>
+   				{% endfor %}
+				</ul>
+			{% endif %}
+		</div>
+
+	</div>	
+</body>
+</html>
+
